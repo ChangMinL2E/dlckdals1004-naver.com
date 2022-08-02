@@ -1,7 +1,19 @@
-def fac(n):
-    if n ==1:
-        return 1
-    
-    return n*fac(n-1)
+def con(num, C):
+    count = 0
+    cml = True
+    l = 1
+    r = C
+    while cml:
+        c = int((l+r)/2)
+        if c == num:
+            count += 1
+            cml = False
+        else:
+            count += 1
+            if c > num:
+                r = c
+            else:
+                l = c
+    return count
 
-print(fac(10))    
+print(con(200,400))
