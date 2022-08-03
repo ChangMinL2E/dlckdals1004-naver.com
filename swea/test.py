@@ -1,19 +1,26 @@
-def con(num, C):
-    count = 0
-    cml = True
-    l = 1
-    r = C
-    while cml:
-        c = int((l+r)/2)
-        if c == num:
-            count += 1
-            cml = False
-        else:
-            count += 1
-            if c > num:
-                r = c
-            else:
-                l = c
-    return count
+for tc in range(int(input())):
+    max = 0
+    min = 1000000
+    N, M = map(int ,input().split(" "))
+    result = 0
 
-print(con(200,400))
+    numList = list(map(int , input().split(" ")))
+
+    
+    
+    idx = 0
+    for num in numList:
+        if sum(numList[idx:idx+M]) < min:
+            min = sum(numList[idx:idx+M]) 
+        else:
+            if sum(numList[idx:idx+M]) > max:
+                max = sum(numList[idx:idx+M])
+            else:
+                continue
+        idx+=1
+        
+    
+    
+    result = max - min
+
+    print(f'# {tc+1} {result}')
