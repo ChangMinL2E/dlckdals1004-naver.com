@@ -17,4 +17,3 @@ for tc in range(1,T+1):
             low = score
     
     print(f'#{tc} {high-low}')
-
