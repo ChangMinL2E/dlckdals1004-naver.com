@@ -10,7 +10,15 @@ for tc in range(1,11):
             pass
         else:
             Highs = [High[idx+2-index] for index in range(5)] # High[idx-2],...,High[idx+2]
-            Highs = sorted(Highs, reverse=True)
+            
+            # 버블정렬 역순
+            n = len(Highs)
+            for i in range(n-1):
+                for j in range(n-i-1):
+                    if Highs[n-j-1] > Highs[n-j-2]:
+                        Highs[n-j-1], Highs[n-j-2] = Highs[n-j-2], Highs[n-j-1]
+
+            # Highs = sorted(Highs, reverse=True)
             if Highs[0] == High[idx]:
                 total += Highs[0] - Highs[1]
             else:
