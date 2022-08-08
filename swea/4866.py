@@ -22,6 +22,3 @@ for tc in range(1,T+1):
         out = f'#{tc} 0'
     print(out)
                     
-
-
-
