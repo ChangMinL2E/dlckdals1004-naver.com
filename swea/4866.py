@@ -2,23 +2,29 @@
 # Runtime error
 
 T = int(input())
-for tc in range(1,T+1):
+for tc in range(1, T + 1):
     N = input()
-    A = ['{','[','(']
-    B = ['}',']',')']
+    A = ['{', '(']
+    B = ['}', ')']
     test = []
+    num = 0
     for st in N:
         if st in A:
             test.append(st)
+            num += 1
         elif st in B:
-            for i in range(3):
-                if (st == B[i]):
-                    if (test[-1] == A[i]):
-                        test.pop()
+            if len(test) == 0:
+                out = f'#{tc} 0'
+                break
+            elif B.index(st) == A.index(test[-1]):
+                test.pop()
+                num -= 1
+            else:
+                out = f'#{tc} 0'
+                break
 
-    if test == []:
-        out = f'#{tc} 1' 
+    if num == 0:
+        out = f'#{tc} 1'
     else:
         out = f'#{tc} 0'
     print(out)
-                    
