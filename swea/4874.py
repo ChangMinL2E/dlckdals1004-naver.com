@@ -8,37 +8,48 @@ T = int(input())
 for tc in range(1, T + 1):
     stk = []
     N = list(input().split())
-    test_st = []
     stk = []
 
     for n in N:
-        if n in ['*', '-', '/', '+', '.']:
-            test_st.append(n)
-        else:
+        if n not in ['*', '-', '/', '+', '.']:
             stk.append(int(n))
-
-    if len(test_st) != len(stk):
-        out = f'#{tc} error'
-    else:
-        for i in range(len(test_st)):
-            if test_st[i] == '*':
+        elif n == '*':
+            if len(stk) <= 1:
+                out = f'#{tc} error'
+                break
+            else:
                 n2 = stk.pop()
                 n1 = stk.pop()
                 stk.append(int(n1 * n2))
-            elif n == '/':
+        elif n == '/':
+            if len(stk) <= 1:
+                out = f'#{tc} error'
+                break
+            else:
                 n2 = stk.pop()
                 n1 = stk.pop()
                 stk.append(int(n1 / n2))
-            elif n == '+':
+        elif n == '+':
+            if len(stk) <= 1:
+                out = f'#{tc} error'
+                break
+            else:
                 n2 = stk.pop()
                 n1 = stk.pop()
                 stk.append(int(n1 + n2))
-            elif n == '-':
+        elif n == '-':
+            if len(stk) <= 1:
+                out = f'#{tc} error'
+                break
+            else:
                 n2 = stk.pop()
                 n1 = stk.pop()
                 stk.append(int(n1 - n2))
-            else:
+        else:
+            if len(stk) == 1:
                 n1 = stk.pop()
                 out = f'#{tc} {n1}'
+            else:
+                out = f'#{tc} error'
 
     print(out)
