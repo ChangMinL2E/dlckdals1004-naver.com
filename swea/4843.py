@@ -13,7 +13,7 @@ for tc in range(1,T+1):
     for i in range(5):
         new_lst.append(lst1[i])
         new_lst.append(lst2[i])
-    
+
     new_st = ''
     for j in new_lst:
         new_st += str(j)+' '
