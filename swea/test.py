@@ -30,38 +30,38 @@
 # print(a+1)
 
 # print(chr(49))
-def itoa(integer): # 숫자열을 받으면 문자열로 출력하기.
-    lst = []
-
-    if integer > 0:
-        while integer != 0:
-            lst.append(chr(integer%10 + 48))
-            integer = integer//10
-
-        for i in range(len(lst)//2):
-            lst[i], lst[len(lst)-1-i] = lst[len(lst)-1-i], lst[i]
-        s2 = ''.join(lst)
-
-    elif integer < 0:
-        integer = -integer
-        while integer != 0:
-            lst.append(chr(integer%10 + 48))
-            integer = integer//10
-
-        lst.append('-')
-        for i in range(len(lst)//2):
-            lst[i], lst[len(lst)-1-i] = lst[len(lst)-1-i], lst[i]
-        s2 = ''.join(lst)
-
-    else:
-        s2 = '0'
-
-    return s2
-
-
-print(itoa(-458))
-print(itoa(9568))
-print(itoa(457))
+# def itoa(integer): # 숫자열을 받으면 문자열로 출력하기.
+#     lst = []
+#
+#     if integer > 0:
+#         while integer != 0:
+#             lst.append(chr(integer%10 + 48))
+#             integer = integer//10
+#
+#         for i in range(len(lst)//2):
+#             lst[i], lst[len(lst)-1-i] = lst[len(lst)-1-i], lst[i]
+#         s2 = ''.join(lst)
+#
+#     elif integer < 0:
+#         integer = -integer
+#         while integer != 0:
+#             lst.append(chr(integer%10 + 48))
+#             integer = integer//10
+#
+#         lst.append('-')
+#         for i in range(len(lst)//2):
+#             lst[i], lst[len(lst)-1-i] = lst[len(lst)-1-i], lst[i]
+#         s2 = ''.join(lst)
+#
+#     else:
+#         s2 = '0'
+#
+#     return s2
+#
+#
+# print(itoa(-458))
+# print(itoa(9568))
+# print(itoa(457))
 
 # # 패턴 매칭
 # if t[i] != p[j]:
@@ -71,4 +71,11 @@ print(itoa(457))
 # else:
 #     i += 1
 #     j += 1
+
+
+
+
+N = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
+
+print(N[3][1:5])
 
