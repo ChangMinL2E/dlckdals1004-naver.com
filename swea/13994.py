@@ -1,63 +1,64 @@
 # 새로운 버스 노선
+# 아직 수정후에 디버깅을 못했다.
 
 for tc in range(1, int(input()) + 1):
     N = int(input())
-    lst1 = []
-    lst2 = []
-    lst3 = []
+    lst = []
+    for i in range(N):
+        lst.append([]) # 2차원 배열 원소로 N개 행렬 생성
+    
+    total_ele = []
 
-    for _ in range(N):
+    for j in range(N):
         C, A, B = map(int, input().split())
         if C == 1:
             for num1 in range(A, B + 1):
-                lst1.append(num1)
+                lst[j].append(num1)
+                total_ele.append(num1)
         elif C == 2:
             if A % 2 == 0:
                 for num2 in range(A, B, 2):
-                    lst2.append(num2)
+                    lst[j].append(num2)
+                    total_ele.append(num)
                 if B not in lst2:
-                    lst2.append(B)
+                    lst[j].append(B)
+                    total_ele.append(num)
             else:
                 for num2 in range(A, B, 2):
-                    lst2.append(num2)
+                    lst[j].append(num2)
+                    total_ele.append(num)
                 if B not in lst2:
-                    lst2.append(B)
+                    lst[j].append(B)
+                    total_ele.append(num)
         else:
             if A % 2 == 0:
                 for num3 in range(A, B):
                     if num3%4 == 0:
-                        lst3.append(num3)
+                        lst[j].append(num3)
+                        total_ele.append(num)
                 if B not in lst3:
-                    lst3.append(B)
+                    lst[j].append(B)
+                    total_ele.append(num)
             else:
                 for num3 in range(A, B):
                     if num3%10:
-                        lst3.append(num3)
+                        lst[j].append(num3)
+                        total_ele.append(num)
                 if B not in lst3:
-                    lst3.append(B)
+                    lst[j].append(B)
+                    total_ele.append(num)
 
-    total = []
-    for n1 in lst1:
-        total.append(n1)
-    for n1 in lst2:
-        total.append(n1)
-    for n1 in lst3:
-        total.append(n1)
-    total = list(set(total))
 
-    max_num = 1
+    total = list(set(total_ele))
 
-    for num in total:
-        if (num in lst1) and (num in lst2) and (num in lst3):
-            max_num = 3
-            break
-        elif (num in lst1) and (num in lst2):
-            max_num = 2
+    maximum = 0
+    total_num = 0
 
-        elif (num in lst2) and (num in lst3):
-            max_num = 2
+    for num in total_ele:
+        for ls in lst:
+            if num in ls:
+                total_num += 1
+        if maximum < total_num:
+            maximum = total_num
 
-        elif (num in lst1) and(num in lst3):
-            max_num = 2
-
-    print(f'#{tc} {max_num}')
+    print(f'#{tc} {total_num}')
