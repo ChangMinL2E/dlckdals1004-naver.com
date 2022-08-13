@@ -22,6 +22,11 @@ for tc in range(1, T + 1):
                 maximum = total
         total = 0
 
+    # N x M -> M x N
+    lst2 = []
+
+    
+
     for i in range(len(lst)):
         for j in range(len(lst)):
             if i > j:
