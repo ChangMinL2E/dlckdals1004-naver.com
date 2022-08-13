@@ -2,7 +2,7 @@
 # 아직 수정후에 디버깅을 못했다.
 
 for tc in range(1, int(input()) + 1):
-    N = int(input())
+    N = int(input()) 
     lst = []
     for i in range(N):
         lst.append([]) # 2차원 배열 원소로 N개 행렬 생성
