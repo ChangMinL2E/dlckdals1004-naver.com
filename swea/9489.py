@@ -25,14 +25,16 @@ for tc in range(1, T + 1):
     # N x M -> M x N
     lst2 = []
 
+    for k in range(M): # lst2에 M행 생성
+        lst2.append([0]* N)
     
 
-    for i in range(len(lst)):
-        for j in range(len(lst)):
-            if i > j:
-                lst[i][j], lst[j][i] = lst[j][i], lst[i][j]
+    for l in range(N): # N열 생성해야한다.
+        for k in range(M):
+            lst2[k][l] = lst[l][k]
 
-    for ls in lst:
+
+    for ls in lst2:
         for j in ls:
             if j == 1:
                 total += 1
