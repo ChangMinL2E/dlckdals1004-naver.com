@@ -9,7 +9,7 @@ for tc in range(1, int(input()) + 1):
     
     total_ele = []
 
-    for j in range(N):
+    for j in range(N): 
         C, A, B = map(int, input().split())
         if C == 1:
             for num1 in range(A, B + 1):
