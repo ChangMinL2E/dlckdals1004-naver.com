@@ -42,7 +42,7 @@ for tc in range(1, T + 1):
                 total = 0
 
             if maximum < total:
-                maximum = total
+                maximum = total  
         total = 0
 
-    print(f'#{tc} {maximum}')
+    print(f'#{tc} {maximum}') 
