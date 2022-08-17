@@ -72,3 +72,21 @@
 #     i += 1
 #     j += 1
 
+SIZE = 100
+ST = [' ']*SIZE
+top = -1
+
+def ifEmpty():
+    if top> 0:
+        return False
+    return True
+
+def isFull():
+    if top == SIZE - 1:
+        return True
+    return ...
+
+
+
+
+
