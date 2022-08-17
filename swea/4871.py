@@ -1,6 +1,6 @@
 # 그래프 경로. 방향성 그래프.
 
-# 노드의 거리
+
 
 for tc in range(1, int(input()) + 1):
     V, E = map(int, input().split())
@@ -22,13 +22,13 @@ for tc in range(1, int(input()) + 1):
                 available.append(tu)
 
         if len(available) == 0 and len(path) == 1:  # 가능하지도, 갈곳도 없으면.
-            out = f'#{tc} 0'
+            print(f'#{tc} 0')
             break
 
         elif len(available) == 0:  # 갈길이 없으면, 갈림길까지 돌아와.
             del path[-1]
             if len(path) >= 1:
-                N2 = path[-1][0]
+                N2 = path[-1][1]
 
         else:
             go = available[0]
