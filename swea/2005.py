@@ -11,9 +11,9 @@ def tri(n):
 
     return memo[n - 1]
 
-
+memo = [[] for _ in range(10)]
 for tc in range(1, int(input()) + 1):
-    memo = [[] for _ in range(10)]
+
     N = int(input())
     print(f'#{tc}')
     for i in range(1, N+1):
