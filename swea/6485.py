@@ -19,7 +19,7 @@ for tc in range(1, int(input()) + 1):
     C = [0] * P  # 정류장 지나는 버스 노선갯수 측정기
     # # C = [0,1,2,2,1,1]
 
-    for a_b in A_B:
+    for a_b in A_B: # 기존방법도 가능하다. 이때, a_b[1]이 P의 max를 넘어가는 경우를 고려해야한다.
         for idx in range(len(C_index)):
             if a_b[0] <= C_index[idx] <= a_b[1]:
                 C[idx] += 1
