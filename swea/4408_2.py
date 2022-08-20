@@ -33,11 +33,9 @@ for tc in range(1, int(input()) + 1):
                         lst.append([])
                         cml = False
                         cml2 = False
-
                     elif t in lst[cnt]:
                         cnt += 1
                         cml2 = False
-
                     elif t == test_lst[-1]:
                         cml = False
                         cml2 = False
