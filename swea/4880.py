@@ -10,6 +10,7 @@
 # st = 0
 # ed = 7
 # re(lst[0:3])
+# re(lst[0:3])
 # re1(st, (st + ed) // 2)
 
 def fight(W, B):
