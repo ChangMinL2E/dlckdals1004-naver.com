@@ -1,4 +1,5 @@
 import sys
+
 sys.stdin = open('4874.txt')
 
 # 수정하세요.
