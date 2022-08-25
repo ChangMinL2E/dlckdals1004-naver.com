@@ -6,7 +6,7 @@ def rotation(lst):  # 나중에 함수에 매개변수로 n을 추가해보자.
             temp = lst[0]
         else:
             lst[i - 1] = lst[i]
-    lst[len(lst) - 1] = temp  # return 도 없어서 함수로써 이쁘지가 않다.
+    lst[len(lst) - 1] = temp
 
 
 for tc in range(1, int(input()) + 1):
