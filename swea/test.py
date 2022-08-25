@@ -102,28 +102,33 @@
 # G = [[], [2, 3], [1, 4, 5], [1, 7], [2, 6], [2, 6], [4, 5, 7], [3, 6]]
 # visited = [0] * 8
 # dfs(8)
+#
+# def dfs(v):
+#     visited[v] = True
+#     for w in graph[v]:
+#         if visited[w] is not True:
+#             dfs(w)
+#
+#
+# TC = int(input())
+# for tc in range(1, TC + 1):
+#     V, E = map(int, input().split())
+#     graph = [[] for _ in range(V + 1)]
+#     visited = [0 for _ in range(V + 1)]
+#     for _ in range(E):
+#         src, dest = map(int, input().split())
+#         graph[src].append(dest)
+#
+#     S, G = map(int, input().split())
+#
+#     result = 0
+#     dfs(S)
+#     if visited[G]:
+#         result = 1
+#
+#     print(f'#{tc} {result}')
 
-def dfs(v):
-    visited[v] = True
-    for w in graph[v]:
-        if visited[w] is not True:
-            dfs(w)
 
 
-TC = int(input())
-for tc in range(1, TC + 1):
-    V, E = map(int, input().split())
-    graph = [[] for _ in range(V + 1)]
-    visited = [0 for _ in range(V + 1)]
-    for _ in range(E):
-        src, dest = map(int, input().split())
-        graph[src].append(dest)
 
-    S, G = map(int, input().split())
 
-    result = 0
-    dfs(S)
-    if visited[G]:
-        result = 1
-
-    print(f'#{tc} {result}')
