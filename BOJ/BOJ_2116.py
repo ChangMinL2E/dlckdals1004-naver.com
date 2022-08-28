@@ -9,33 +9,65 @@ for _ in range(dice_cnt):
     # A-F, B-D, C-E
     dices.append(dice) # 주사위 모음 생성
 
-lst = []
-top = 0 # 윗면
-bottom = 0 # 아랫면
+score_lst = [0,0,0,0,0,0]
 
+# print(dices)
+for idx in range(6): # 첫번째 주사위경우의 수에 따라 정해졌다.
+    total = 0 # 경우의 수 별 총 합
+    N = dice_cnt # 주사위 갯수.
+    lst = []
 
-for i in range(len(dices)):
-    if i != 0:
-        bottom_idx = dices[i].index(top)
-        bottom = dices[i][bottom_idx]
-
-
-
-
-
-    elif i == 0:
-        idx = dices[i].index(6) # 6의 인덱스
-        one_idx = dices[i].index(1)
-        lst.append(6)
-        if one_idx%3 != idx%3:
-            top = 1
+    # 첫번째
+    if N == dice_cnt:
+        lst = dices[0]
+        i = idx
+        if i < 3:
+            i_match = i+3
         else:
-            top = 2
+            i_match = i-3
 
+        if lst[i] != 6 and lst[i_match] != 6:
+            total += 6
+        elif lst[i] == 6 and lst[i_match] != 5:
+            total += 5
+        elif lst[i_match] == 6 and lst[i] != 5:
+            total += 5
+        elif lst[i] == 6 and lst[i_match] == 5:
+            total += 4
+        elif lst[i] == 5 and lst[i_match] == 6:
+            total += 4
 
-    # print(idx)#
+        bottom = lst[i_match] # 다음 아랫면
+        N = N-1
 
+    # 2번째부터 마지막
 
+    while N != 0:
+        dice_i = dice_cnt-N
+        lst = dices[dice_i]
+        i = lst.index(bottom)
+        if i < 3:
+            i_match = i+3
+        else:
+            i_match = i-3
+
+        if lst[i] != 6 and lst[i_match] != 6:
+            total += 6
+        elif lst[i] == 6 and lst[i_match] != 5:
+            total += 5
+        elif lst[i_match] == 6 and lst[i] != 5:
+            total += 5
+        elif lst[i] == 6 and lst[i_match] == 5:
+            total += 4
+        elif lst[i] == 5 and lst[i_match] == 6:
+            total += 4
+
+        bottom = lst[i_match] # 다음 아랫면
+        N = N-1
+
+    score_lst[idx] += total
+
+print(max(score_lst))
 
 
 
