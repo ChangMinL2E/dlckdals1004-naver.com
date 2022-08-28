@@ -1,5 +1,4 @@
 # BOJ 2116 주사위 쌓기
-# 다시 생각하고 손코딩 끝나면 시작하기.
 
 dice_cnt = int(input())
 dices = []
