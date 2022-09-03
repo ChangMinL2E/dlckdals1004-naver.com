@@ -110,23 +110,23 @@
 #             dfs(w)
 #
 #
-# TC = int(input())
-# for tc in range(1, TC + 1):
-#     V, E = map(int, input().split())
-#     graph = [[] for _ in range(V + 1)]
-#     visited = [0 for _ in range(V + 1)]
-#     for _ in range(E):
-#         src, dest = map(int, input().split())
-#         graph[src].append(dest)
-#
-#     S, G = map(int, input().split())
-#
-#     result = 0
-#     dfs(S)
-#     if visited[G]:
-#         result = 1
-#
-#     print(f'#{tc} {result}')
+TC = int(input())
+for tc in range(1, TC + 1):
+    V, E = map(int, input().split())
+    graph = [[] for _ in range(V + 1)]
+    visited = [0 for _ in range(V + 1)]
+    for _ in range(E):
+        src, dest = map(int, input().split())
+        graph[src].append(dest)
+
+    S, G = map(int, input().split())
+
+    result = 0
+    dfs(S)
+    if visited[G]:
+        result = 1
+
+    print(f'#{tc} {result}')
 
 
 
