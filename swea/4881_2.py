@@ -10,10 +10,10 @@ def per(lst, k, N, curSum):
         return
 
     else:
-        for i in range(N):
+        for i in range(N): # 0~N-1
             if not visited[i]:
                 visited[i] = True
-                per(lst, k+1, N, curSum + lst[i][k])
+                per(lst, k+1, N, curSum + lst[i][k]) #
                 visited[i] = False
 
 
