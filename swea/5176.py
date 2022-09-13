@@ -15,21 +15,23 @@
 #         # print(tree)
 #         make_tree(n * 2 + 1)
 
-def make_tree(n):
-    global number
+def inorder(n):
+    global idx
     if n <= N:
-        make_tree(n * 2)
-        tree[n] = number
-        number += 1
-        make_tree(n * 2 + 1)
+        inorder(n * 2)
+
+        tree[n] = idx
+        idx += 1
+
+        inorder(n * 2 + 1)
 
 
 for tc in range(1, int(input()) + 1):
     N = int(input())
 
     tree = [0 for i in range(N + 1)]
-    number = 1
-    make_tree(1)
+    idx = 1
+    inorder(1)
     print(f'#{tc} {tree[1]} {tree[N // 2]}')
 
 # N = 15
