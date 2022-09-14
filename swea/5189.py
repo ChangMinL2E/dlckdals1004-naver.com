@@ -1,7 +1,6 @@
 # 02 완전 검색 전자카트
 
 # 고려사항은 마지막에 무조건 1로 가야한다는 1차원 백트래킹
-# 왜 안될까..
 
 
 def Backtracking(lst, cnt, k, N, curSum):
