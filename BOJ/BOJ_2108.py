@@ -1,39 +1,62 @@
 # BOJ_2108 정렬 통계학
-# 시간 초과
-
+# 또 시간 초과
+N = int(input())
 lst = []
-for _ in range(int(input())):
-    lst.append(float(input()))
+dic = {}
+total = 0
+
+maximum = 0
+most_lst = []
+
+for _ in range(N):
+    inputN = int(input())
+    if inputN not in lst:
+        dic[inputN] = 1
+    else:
+        dic[inputN] += 1
+
+    if maximum < dic[inputN]:
+        maximum = dic[inputN]
+        most_lst = [inputN]
+    elif maximum == dic[inputN]:
+        most_lst.append(inputN)
+
+    total += inputN
+    lst.append(inputN)
+
 lst.sort()
 
-dic = {}
-lst_set = set(lst)
-for key in lst_set:
-    dic[key] = 0
+A = round(total/N)
+B = lst[N//2]
+D = lst[-1]-lst[0]
+lst = sorted(list(set(lst)))
 
-A = round(sum(lst)/len(lst))
-B = lst[len(lst)//2]
-D = abs(lst[-1]-lst[0])
-
-max_cnt = 0
-for ls in lst_set:
-    if max_cnt<lst.count(ls):
-        max_cnt = lst.count(ls)
-
-most_lst = []
-for ls in lst_set:
-    if lst.count(ls) == max_cnt:
-        most_lst.append(ls)
 most_lst.sort()
-
 if len(most_lst) == 1:
-    C = most_lst[0]
+    out = most_lst[0]
 else:
-    C = most_lst[1]
+    out = most_lst[1]
 
-P_lst = [A, int(B), int(C), int(D)]
-for ele in P_lst:
-    print(ele)
+# out = 0
+# cnt = 0
+# for ls in lst:
+#     if maximum == dic[ls]:
+#         out = ls
+#         cnt += 1
+#         if cnt == 2:
+#             break
+
+#
+# if len(most_lst) == 1:
+#     C = most_lst[0]
+# else:
+#     C = most_lst[1]
+
+print(A)
+print(B)
+# print(C)
+print(out)
+print(D)
 
 
 
