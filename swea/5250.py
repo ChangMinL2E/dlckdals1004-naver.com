@@ -38,20 +38,26 @@ for tc in range(1,int(input())+1):
     N = int(input())
     Lst = [list(map(int,input().split())) for _ in range(N)]
     delta = [(1,0),(-1,0),(0,1),(0,-1)]
-    minimum = 1e10
     visited = [[1e10]*N for _ in range(N)]
 
     Queue = deque()
-    Queue.append((0, 0, 0))  # x,y,cnt
+    Queue.append((0, 0))  # x,y,cnt
+    visited[0][0] = 0
     while Queue:
         q = Queue.popleft()
 
         for dt in delta:
             x, y = q[0] + dt[0], q[1] + dt[1]
-            if 0 <= x < N and 0 <= y < N and visited[x][y] > q[2] + 1 + abs(Lst[q[0]][q[1]] - Lst[x][y]):
-                Queue.append((x, y, q[2] + 1 + abs(Lst[q[0]][q[1]] - Lst[x][y])))
-                visited[x][y] = q[2] + 1 + abs(Lst[q[0]][q[1]] - Lst[x][y])
 
+            if 0 <= x < N and 0 <= y < N:
+                if Lst[x][y] - Lst[q[0]][q[1]] < 0:
+                    alpha = 0
+                else:
+                    alpha = Lst[x][y] - Lst[q[0]][q[1]]
+
+                if visited[x][y] > visited[q[0]][q[1]] + 1 + alpha:
+                    Queue.append((x, y))
+                    visited[x][y] = visited[q[0]][q[1]] + 1 + alpha
 
     print(f'#{tc} {visited[N-1][N-1]}')
 
