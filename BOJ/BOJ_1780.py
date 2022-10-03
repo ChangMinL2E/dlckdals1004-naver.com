@@ -1,54 +1,34 @@
 # BOJ_1780 종이의 개수
-import sys
-sys.setrecursionlimit(500000)
+
+# 좌측 상단 원소를 기준으로 잡고, 다른 순간 9등분 하자!
 
 
-def divide(lst,N):
+def divide(row,col,n):
     global zero,one,minus
 
-    zero_cnt, one_cnt, minus_cnt = 0,0,0
-    for i in range(N):
-        zero_cnt += lst[i].count(0)
-        one_cnt += lst[i].count(1)
-        minus_cnt += lst[i].count(-1)
+    standard = Lst[row][col]
+    for i in range(row,row+n):
+        for j in range(col,col+n):
+            if Lst[i][j] != standard:
+                for k in range(3):
+                    for l in range(3):
+                        divide(row+k*n//3,col+l*n//3,n//3) # n by n -> n//3 by n//3
+                return # 굳이 그 다음 요소를 볼 필요가 없다.
 
-    if zero_cnt == N*N:
-        zero += 1
-        return
-
-    elif one_cnt == N*N:
+    if standard == 1:
         one += 1
-        return
-
-    elif minus_cnt == N*N:
-        minus += 1
-        return
-
+    elif standard == 0:
+        zero += 1
     else:
-        if N != 3:
-            for i in range(0,N,3): # 3등분
-                for k in range(round(N/3)): # 열 숫자
-                    new_lst = []
-                    for j in range(round(N/3)): # 행 숫자
-                        new_lst.append(lst[i+j][round(N/3)*k:round(N/3)*k+round(N/3)])
-                    # new_lst 완성
-                    divide(new_lst, round(N/3))
-        else:
-            for idx in range(3):
-                for jdx in range(3):
-                    if lst[idx][jdx] == 0:
-                        zero += 1
-                    elif lst[idx][jdx] == 1:
-                        one += 1
-                    else:
-                        minus += 1
-            return
+        minus += 1
 
-Num = int(sys.stdin.readline())
+    return
+
+N = int(input())
 zero, one,minus = 0,0,0
-Lst = [list(map(int,sys.stdin.readline().split())) for _ in range(Num)]
+Lst = [list(map(int,input().split())) for _ in range(N)]
 
-divide(Lst,Num)
+divide(0,0,N)
 print(minus)
 print(zero)
 print(one)
