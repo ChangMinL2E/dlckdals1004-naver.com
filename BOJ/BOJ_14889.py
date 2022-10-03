@@ -1,45 +1,41 @@
-# BOJ_14889 스타트와 링크 / 백트래킹
-# 다시 볼것.
+# BOJ_14889 스타트와 링크
 
-def Backtracking(Lst, k, N, start_score, link_score):
+def per(team1, team2,k,N):
     global minimum
 
-    if k==N:
-        if minimum > abs(start_score-link_score):
-            minimum = abs(start_score-link_score)
+    if k == N:
+        total1 = 0
+        total2 = 0
+
+        for idx in range(N // 2):
+            for jdx in range(N // 2):
+                total1 += Lst[team1[idx]][team1[jdx]]
+                total2 += Lst[team2[idx]][team2[jdx]]
+
+        if minimum > abs(total1 - total2):
+            minimum = abs(total1-total2)
         return
 
-    for idx in range(2):
-        score = 0
-        if len(Lst[idx]) < N/2:
-            Lst[idx].append(k)
-            if len(Lst[idx]) >= 2:
-                for i in Lst[idx]:
-                    score += lst[i][k]
-                    score += lst[k][i]
-                    if idx == 0:
-                        Backtracking(Lst,k+1,N,start_score+score,link_score)
-                        Lst[idx].pop()
-                    else: # idx == 1:
-                        Backtracking(Lst, k + 1, N, start_score, link_score+score)
-                        Lst[idx].pop()
-            elif 0 < len(Lst[idx])<=2 :
-                Backtracking(Lst, k+1, N, start_score,link_score)
-                Lst[idx].pop()
+    if len(team1) != N//2:
+        team1.append(k)
+        per(team1, team2, k+1, N)
+        team1.pop()
+
+    if len(team2) != N//2:
+        team2.append(k)
+        per(team1, team2, k+1, N)
+        team2.pop()
+
+
 
 
 N = int(input())
-lst = [list(map(int,input().split())) for _ in range(N)]
+Lst = [list(map(int,input().split())) for _ in range(N)]
+minimum = 1e10
 
-minimum = 10000000
-teams = [[],[]]
-for idx in range(2):
-    teams[idx].append(0)
-    Backtracking(teams,1,N,0,0)
-    teams[idx].pop()
+per([],[],0,N)
 
 print(minimum)
-
 
 
 
