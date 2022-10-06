@@ -36,6 +36,6 @@ for idx in range(N):
     per([Lst[idx]],1,N)
     visited[idx] = False
 
-print(maximum-minimum)
+print(maximum)
 
 
