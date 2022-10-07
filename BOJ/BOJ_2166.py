@@ -7,12 +7,13 @@ lst = [list(map(int,input().split())) for _ in range(N)]
 lst.append(lst[0])
 total = 0
 
-for i in range(N-1):
+for i in range(N):
     total += lst[i][0]*lst[i+1][1]-lst[i+1][0]*lst[i][1]
 
-sol = round((1/2)*abs(total),1)
-print((sol/100)*100)
+# sol = round((1/2)*abs(total),1)
+sol = abs(0.5*total)
+# print(sol)
 
-
+print("%.1f" % sol)
 
 
