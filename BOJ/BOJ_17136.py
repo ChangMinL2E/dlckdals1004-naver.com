@@ -1,93 +1,61 @@
 # BOJ_17136 색종이 붙이기
+# 리발 깨달았다.
 import sys
 
 input = sys.stdin.readline
 from copy import deepcopy
 
-
-def Backtracking(Visit, x, y, curCnt):
+def Backtracking(paper, x, y, curCnt):
     global minimum
+
     if curCnt >= minimum:
         return
 
-    if x == 9 and y == 9:
-        if not Visit[9][9] and Papers[9][9]:
-            curCnt += 1
-
-        minimum = curCnt
+    if x == 9 and y == 10:
+        if minimum > curCnt:
+            minimum = curCnt
         return
-    # print(x,y)
-    if not Papers[x][y] or Visit[x][y]:  # 종이를 안붙여도 되는 경우,
-        if y == 9:  # 마지막 칸이면,
-            Backtracking(Visit, x + 1, 0, curCnt)
+
+    if not paper[x][y]:  # 종이를 안붙여도 되는 경우,
+        if y >= 9 and x <= 8:  # 마지막 칸이면,
+            Backtracking(paper, x + 1, 0, curCnt)
         else:
-            Backtracking(Visit, x, y + 1, curCnt)
-    else:  # 붙여야 되는 경우가 오면,
-        row_available = 5
-        col_available = 5
-        # if x <= 5 and y <= 5:
-        #     row_available = 5
-        #     col_available = 5
-        # elif x <= 5:
-        #     col_available = 10 - y
-        # elif y <= 5:
-        #     row_available = 10- x
-        # else:
-        #     row_available = 10 - x
-        #     col_available = 10 - y
+            Backtracking(paper, x, y + 1, curCnt)
+    else:  # 붙여야 되는 경우가 오면, default
+        available = 5
+        cml = True
+        for i in range(1,available+1):
+            for k_x in range(i):
+                for k_y in range(i):
+                    if 0<=x+k_x<10 and 0<=y+k_y<10:
+                        if not paper[x+k_x][y+k_y]:
+                            available = i-1
+                            cml = False
+                            break
+                    else: # 범위 벗어나면,
+                        available = i - 1
+                        cml = False
+                        break
 
-        for i in range(5):
-            if 0<=x+i< 10:
-                if Papers[x+i][y]:
-                    for j in range(1, 5):
-                        if 0 <= x + i < 10 and 0 <= y + j < 10:
-                            # 셀껀데, 만약 종이가 붙어있거나, 종이를 애초에 붙일 필요가 없는 경우,
-                            # if j != 0:
-                            if j < col_available:  # 최소값을 찾았는데, 굳이 볼필요가 있나.
-                                if Visit[x + i][y + j] or not Papers[x + i][y + j]:  # 붙일 필요가 없는 경우
-                                    if col_available > j:
-                                        col_available = j
-                        else:
-                            if col_available > j:
-                                col_available = j
-                else:
-                    if row_available > i:
-                        row_available = i
+                if not cml:
                     break
-            else:
-                if row_available > i:
-                    row_available = i
+            if not cml:
+                break
 
-
-        for j in range(col_available):
-            for i in range(1, 5):
-                if 0 <= x + i < 10 and 0 <= y + j < 10:
-                    # 셀껀데, 만약 종이가 붙어있거나, 종이를 애초에 붙일 필요가 없는 경우,
-                    # if i != 0:
-                    if i < row_available:  # 최소값을 찾았는데, 굳이 볼필요가 있나.
-                        if Visit[x + i][y + j] or not Papers[x + i][y + j]:  # 붙일 필요가 없는 경우
-                            if row_available > i:
-                                row_available = i
-                else:
-                    if row_available > i:
-                        row_available = i
-
-        available = min(row_available, col_available)
         for go in range(1, available + 1):
             if dic[go] != 0:
                 dic[go] -= 1
-                Visit2 = deepcopy(Visit)
+                paper2 = deepcopy(paper)
                 for id in range(go):
                     for jd in range(go):
-                        Visit2[x + id][y + jd] = True
-                if y + go >= 10:
-                    Backtracking(Visit2, x + 1, 0, curCnt + 1)
+                        paper2[x + id][y + jd] = 0
+                if y + go >= 10 and x <= 8:
+                    Backtracking(paper2, x + 1, 0, curCnt + 1)
                 else:
-                    Backtracking(Visit2, x, y + go, curCnt + 1)
+                    Backtracking(paper2, x, y + go, curCnt + 1)
                 dic[go] += 1
 
 
-visited = [[False] * 10 for _ in range(10)]
 Papers = [list(map(int, input().split())) for _ in range(10)]
 dic = {
     1: 5,
@@ -97,7 +65,7 @@ dic = {
     5: 5,
 }
 minimum = 1e10
-Backtracking(visited, 0, 0, 0)
+Backtracking(Papers, 0, 0, 0)
 
 if minimum == 1e10:
     minimum = -1
