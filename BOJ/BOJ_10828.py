@@ -1,29 +1,31 @@
 # BOJ_10828 스택
 # Runtime_error
 
+import sys
+input = sys.stdin.readline
 STK = []
 
 for _ in range(int(input())):
-    InputS = input()
-    if InputS == "pop":
+    InputS = input().split()
+
+    if InputS[0] == "pop":
         if len(STK) == 0:
             print(-1)
         else:
             print(STK.pop())
-    elif InputS == 'top':
+    elif InputS[0] == 'top':
         if len(STK) == 0:
             print(-1)
         else:
             print(STK[-1])
-    elif InputS == "empty":
+    elif InputS[0] == "empty":
         if len(STK) == 0:
             print(1)
         else:
             print(0)
-    elif InputS == 'size':
+    elif InputS[0] == 'size':
         print(len(STK))
     else:
-        InputS = InputS.split()
         STK.append(int(InputS[-1]))
 
 
