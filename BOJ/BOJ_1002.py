@@ -18,8 +18,3 @@ for _ in range(int(sys.stdin.readline())):
             print(1)
         else:
             print(0)
-
-
-
-
-
